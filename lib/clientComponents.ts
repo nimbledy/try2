@@ -3,7 +3,7 @@
 import { useClient } from 'next/data-client';
 import { useState } from 'react';
 
-export function PageWithClient() {
+function PageWithClient() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const imageUrls = [
@@ -21,15 +21,12 @@ export function PageWithClient() {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
   };
 
-  return (
-    <>
-      <h1>zizzamia.xyz</h1>
-      <img src={imageUrls[currentImageIndex]} alt="Park Image" style={{ aspectRatio: '1:1', width: '100%' }} />
-      <button onClick={handlePrevImage}>Previous Image</button>
-      <button onClick={handleNextImage}>Next Image</button>
-    </>
-  );
+  return {
+    currentImageIndex,
+    imageUrls,
+    handlePrevImage,
+    handleNextImage
+  };
 }
 
-// Экспортируем обернутый компонент
 export default useClient(PageWithClient);
