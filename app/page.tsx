@@ -5,10 +5,10 @@ import { NEXT_PUBLIC_URL } from './config';
 import { useState } from 'react';
 
 const imageUrls = [
-  `${NEXT_PUBLIC_URL}/park-1.png`,
-  `${NEXT_PUBLIC_URL}/park-2.png`,
-  `${NEXT_PUBLIC_URL}/park-3.png`,
-  `${NEXT_PUBLIC_URL}/park-4.png`,
+  '/park-1.png',
+  '/park-2.png',
+  '/park-3.png',
+  '/park-4.png',
 ];
 
 const frameMetadata = getFrameMetadata({
