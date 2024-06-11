@@ -1,4 +1,3 @@
-import { useClient } from 'next/data-client';
 import { useState } from 'react';
 
 const Page = () => {
@@ -29,4 +28,4 @@ const Page = () => {
   );
 };
 
-export default useClient(Page);
+export default Page;
