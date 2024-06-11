@@ -1,5 +1,3 @@
-"use client";
-
 import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import { NEXT_PUBLIC_URL } from './config';
 import { useState } from 'react';
