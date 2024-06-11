@@ -1,6 +1,7 @@
 "use client";
 
 import { getFrameMetadata } from '@coinbase/onchainkit/frame';
+import type { Metadata } from 'next';
 import { NEXT_PUBLIC_URL } from './config';
 import { useState } from 'react';
 
@@ -11,7 +12,7 @@ const imageUrls = [
   `${NEXT_PUBLIC_URL}/park-4.png`,
 ];
 
-const frameMetadata = getFrameMetadata({
+const initialMetadata = getFrameMetadata({
   buttons: [
     {
       label: 'Previous Image',
@@ -31,6 +32,19 @@ const frameMetadata = getFrameMetadata({
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
+
+export const metadata: Metadata = {
+  title: 'zizzamia.xyz',
+  description: 'LFG',
+  openGraph: {
+    title: 'zizzamia.xyz',
+    description: 'LFG',
+    images: [imageUrls[0]],
+  },
+  other: {
+    ...initialMetadata,
+  },
+};
 
 export default function Page() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
