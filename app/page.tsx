@@ -1,3 +1,5 @@
+"use client";
+
 import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import { NEXT_PUBLIC_URL } from './config';
 import { useState } from 'react';
@@ -43,7 +45,7 @@ export default function Page() {
 
   return (
     <>
-      <h1>Valera zora</h1>
+      <h1>zizzamia.xyz</h1>
       <img src={imageUrls[currentImageIndex]} alt="Park Image" style={{ aspectRatio: '1:1', width: '100%' }} />
       <button onClick={handlePrevImage}>Previous Image</button>
       <button onClick={handleNextImage}>Next Image</button>
