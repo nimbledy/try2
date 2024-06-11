@@ -5,10 +5,7 @@ import { NEXT_PUBLIC_URL } from './config';
 import { useState } from 'react';
 
 const imageUrls = [
-  '/park-1.png',
-  '/park-2.png',
-  '/park-3.png',
-  '/park-4.png',
+  `https://ibb.co/3F3PRJX`,
 ];
 
 const frameMetadata = getFrameMetadata({
