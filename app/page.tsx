@@ -9,7 +9,6 @@ const frameMetadata = getFrameMetadata({
       label: 'Valera page',
     },
     {
-      action: 'link',
       label: 'My Zora',
       link: "https://docs.farcaster.xyz",
     },
