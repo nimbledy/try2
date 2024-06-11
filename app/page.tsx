@@ -5,7 +5,10 @@ import { NEXT_PUBLIC_URL } from './config';
 import { useState } from 'react';
 
 const imageUrls = [
-  `https://ibb.co/3F3PRJX`,
+  `${NEXT_PUBLIC_URL}/park-1.png`,
+  `${NEXT_PUBLIC_URL}/park-2.png`,
+  `${NEXT_PUBLIC_URL}/park-3.png`,
+  `${NEXT_PUBLIC_URL}/park-4.png`,
 ];
 
 const frameMetadata = getFrameMetadata({
@@ -23,7 +26,7 @@ const frameMetadata = getFrameMetadata({
     },
   ],
   image: {
-    src: imageUrls[0],
+    src: `${NEXT_PUBLIC_URL}/park-1.png`,
     aspectRatio: '1:1',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
