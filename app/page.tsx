@@ -1,5 +1,4 @@
-import { getFrameMetadata } from '@coinbase/onchainkit/frame';
-import { NEXT_PUBLIC_URL } from './config';
+import { useClient } from 'next/data-client';
 import { useState } from 'react';
 
 const imageUrls = [
@@ -9,29 +8,7 @@ const imageUrls = [
   '/park-4.png',
 ];
 
-
-const frameMetadata = getFrameMetadata({
-  buttons: [
-    {
-      label: 'Previous Image',
-    },
-    {
-      label: 'Next Image',
-    },
-    {
-      action: 'link',
-      label: 'Visit Website',
-      target: 'https://your-website.com',
-    },
-  ],
-  image: {
-    src: imageUrls[0],
-    aspectRatio: '1:1',
-  },
-  postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
-});
-
-export default function Page() {
+const Page = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrevImage = () => {
@@ -51,4 +28,6 @@ export default function Page() {
       <a href="https://your-website.com" target="_blank" rel="noopener noreferrer">Visit Website</a>
     </>
   );
-}  
+};
+
+export default useClient(Page);
