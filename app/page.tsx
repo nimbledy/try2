@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from 'react';
+import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import { NEXT_PUBLIC_URL } from './config';
+import { useState } from 'react';
 
 const imageUrls = [
   `${NEXT_PUBLIC_URL}/park-1.png`,
@@ -9,6 +10,27 @@ const imageUrls = [
   `${NEXT_PUBLIC_URL}/park-3.png`,
   `${NEXT_PUBLIC_URL}/park-4.png`,
 ];
+
+const frameMetadata = getFrameMetadata({
+  buttons: [
+    {
+      label: 'Previous Image',
+    },
+    {
+      label: 'Next Image',
+    },
+    {
+      action: 'link',
+      label: 'Visit Website',
+      target: 'https://your-website.com',
+    },
+  ],
+  image: {
+    src: imageUrls[0],
+    aspectRatio: '1:1',
+  },
+  postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
+});
 
 export default function Page() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
