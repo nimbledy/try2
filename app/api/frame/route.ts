@@ -2,39 +2,58 @@ import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/o
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
 
-const imageUrls = [
-  `${NEXT_PUBLIC_URL}/park-1.png`,
-  `${NEXT_PUBLIC_URL}/park-2.png`,
-  `${NEXT_PUBLIC_URL}/park-3.png`,
-  `${NEXT_PUBLIC_URL}/park-4.png`,
-];
-
-let currentIndex = 0;
-
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
 
-  if (isValid && message.button) {
-    if (message.button === 1) {
-      currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-    } else if (message.button === 2) {
-      currentIndex = (currentIndex + 1) % imageUrls.length;
-    }
+  if (!isValid) {
+    return new NextResponse('Message not valid', { status: 500 });
+  }
+
+  const text = message.input || '';
+  let state = {
+    page: 0,
+  };
+  try {
+    state = JSON.parse(decodeURIComponent(message.state?.serialized));
+  } catch (e) {
+    console.error(e);
+  }
+
+  /**
+   * Use this code to redirect to a different page
+   */
+  if (message?.button === 3) {
+    return NextResponse.redirect(
+      'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
+      { status: 302 },
+    );
   }
 
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
-        { label: 'Previous Image' },
-        { label: 'Next Image' },
-        { action: 'link', label: 'Visit Website', target: 'https://your-website.com' },
+        {
+          label: `State: ${state?.page || 0}`,
+        },
+        {
+          action: 'link',
+          label: 'OnchainKit',
+          target: 'https://onchainkit.xyz',
+        },
+        {
+          action: 'post_redirect',
+          label: 'NIKITOS PHOTOS',
+        },
       ],
       image: {
-        src: imageUrls[currentIndex],
-        aspectRatio: '1:1',
+        src: `${NEXT_PUBLIC_URL}/park-1.png`,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
+      state: {
+        page: state?.page + 1,
+        time: new Date().toISOString(),
+      },
     }),
   );
 }
