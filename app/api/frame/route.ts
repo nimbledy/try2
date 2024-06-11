@@ -19,7 +19,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     if (message.button === 1) {
       currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
     } else if (message.button === 2) {
-      currentIndex = (currentIndex + 1) % imageUrls.length;
+      currentIndex = (currentIndex + 1) % imageUrls.length);
     }
   }
 
