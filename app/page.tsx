@@ -1,6 +1,7 @@
 import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import type { Metadata } from 'next';
 import { NEXT_PUBLIC_URL } from './config';
+import { link } from 'fs';
 
 const frameMetadata = getFrameMetadata({
   buttons: [
@@ -10,7 +11,7 @@ const frameMetadata = getFrameMetadata({
     {
       action: 'link',
       label: 'My Zora',
-      content: "https://docs.farcaster.xyz",
+      link: "https://docs.farcaster.xyz",
     },
   ],
   image: {
