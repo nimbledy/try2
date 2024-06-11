@@ -1,22 +1,25 @@
 import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import type { Metadata } from 'next';
 import { NEXT_PUBLIC_URL } from './config';
-import { link } from 'fs';
 
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Valera page',
+      label: 'Story time',
     },
     {
-      action: 'link',
-      label: 'My Zora',
-      target: "https://docs.farcaster.xyz",
+      action: 'tx',
+      label: 'Send Base Sepolia',
+      target: `${NEXT_PUBLIC_URL}/api/tx`,
+      postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
     },
   ],
   image: {
     src: `${NEXT_PUBLIC_URL}/park-3.png`,
     aspectRatio: '1:1',
+  },
+  input: {
+    text: 'Tell me a story',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>Valera</h1>
+      <h1>zizzamia.xyz</h1>
     </>
   );
 }
